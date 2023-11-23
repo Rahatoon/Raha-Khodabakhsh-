@@ -1,0 +1,349 @@
+/* Top icon menu
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+/* hier komt de code van de hamburger menu . die moet ik kleiner doen. */ 
+.menu-box {
+	display: flex;
+	flex-wrap: nowrap;
+	position: relative;
+	padding-top: 1px;
+	right: 0;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 16px;
+}
+.hamburger {
+	display: flex;
+	cursor: pointer;
+	transition-property: opacity filter;
+	transition-duration: .15s;
+	transition-timing-function: linear;
+	font: inherit;
+	color: inherit;
+	text-transform: none;
+	background-color: transparent;
+	border: 0;
+	margin: 0;
+	overflow: visible;
+}
+.hamburger-box {
+	width: 40px;
+	height: 24px;
+	display: inline-block;
+	position: relative;
+	transform: scale(.75);
+	transform-origin: center center;
+}		
+.hamburger-inner {
+	display: block;
+	top: 50%;
+	margin-top: -2px;
+}
+.hamburger-inner::after, .hamburger-inner::before {
+	content: "";
+	display: block;
+}
+.hamburger-inner,
+.hamburger-inner::after,
+.hamburger-inner::before {
+	width: 40px;
+	height: 3.2px;
+	background-color: #fff;
+	border-radius: 4px;
+	position: absolute;
+	transition: transform .15s ease-in-out;
+}
+.hamburger-inner::before {
+	top: -10px;
+}
+.hamburger-inner::after {
+	bottom: -10px;
+}		
+
+/* hier is de styling van de zoekbalk */
+.search-btn {
+	padding: 0;
+	display: inline-block;
+	cursor: pointer;
+	transition: opacity .15s ease-in-out;
+	font: inherit;
+	color: inherit;
+	text-transform: none;
+	background-color: transparent;
+	border: 0;
+	margin: 0;
+	overflow: visible;
+	position: relative;
+	padding-bottom: 4px;
+}	
+.search-btn .search {
+	display: block;
+	position: relative;
+	width: auto;
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+	transform-origin: center center;
+	transform: scale(0.8);
+}
+.search__circle {
+	display: block;
+	width: 26px;
+	height: 26px;
+	border: 3.5px solid #000;
+	border-radius: 50%;
+}
+.home .search__circle,
+.home .search__rectangle {
+	border-color: #fff;
+}
+.search__rectangle {
+	position: absolute;
+	display: block;
+	left: 18px;
+	bottom: -1px;
+	width: 10px;
+	transform: rotate(45deg);
+	border: 2px solid #000;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+	
+
+
+
+
+/* Actual nav (inclusing search and fun contact)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.klikdan-box[aria-hidden="true"],
+.main-menu-box[aria-hidden="true"],
+.top-search-form-bar[aria-hidden="true"] {
+    pointer-events: none;
+    background: 0 0;
+}
+.main-menu-box[aria-hidden="false"],
+.klikdan-box[aria-hidden="false"],
+.top-search-form-bar[aria-hidden="false"] {
+	pointer-events: auto; 
+	background: rgba(0,0,0,0.1);
+}
+.klikdan-box[aria-hidden="false"] .klikdan-menu,
+.main-menu-box[aria-hidden="false"] .app-menu {
+    transform: translateX(0);
+}
+.top-search-form-bar[aria-hidden="false"] .top-search-area {
+	transform: translateY(0%);  
+}
+.klikdan-box,
+.main-menu-box {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 150;
+    transition: all 330ms ease-in-out;
+    will-change: transform;
+}
+.top-search-form-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 150;
+    transition: all 330ms ease-in-out;
+    will-change: transform;
+}
+.app-menu,
+.klikdan-menu,
+.top-search-area {
+    display: flex;
+    justify-content: space-around;
+    will-change: transform;
+    color: #fff;
+    position: fixed;
+    max-width: 100vw;
+    width: 100vw;
+    height: 100%;
+    transform: translateX(150%);
+    z-index: 160;
+    pointer-events: auto;
+    transition: all 330ms ease-in-out;
+}
+.top-search-area {
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	transform: translateY(-150%);
+	color: #000;
+}
+
+.top-search-form-bar[aria-hidden="false"] { 
+	background: #fff;
+}
+#app-menu {
+	justify-content: flex-end;
+}
+.menu-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+	z-index: 3;
+	list-style: none;
+	color: #fff;
+	height: 100vh;
+	line-height: initial;
+	margin-top: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 16vw;
+	padding-right: 16vw;
+/*	clip-path: polygon(0 0, 100% 0%, 100% 100%, calc(0.08 * 100vh) 100%);*/
+	gap: 2.25em;
+	background: #000;
+}
+.menu-list:before {
+	content: "";
+	position: absolute;
+	height: 100vh;
+	width: 16vh;
+	background-color: #000;
+	clip-path: polygon(100% 0, 0 0, 100% 100%);
+	left: 0;
+	transform: translateX( calc(-16vh + 2px) );
+}
+@media screen and (max-width: 600px) {
+	.menu-list {
+		width: 100%;
+		padding-left: auto;
+		padding-right: auto;
+	}
+	.menu-list:before {
+		display: none;
+	}
+}
+.menu-list li a {
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 3.6rem;
+    font-weight: 400;
+    font-family: 'Batman-Bold', Gotham, Montserrat, sans-serif;
+}
+.menu-list li .soft {
+    color: rgba(255, 255, 255, .6);
+}
+.menu-list li .inner-text {
+    display: block;
+    color: rgba(255, 255, 255, .6);
+    font-size: 1.6rem;
+    font-family: MetronicSlab, Georgia, serif;
+    text-transform: none;
+}
+.menu-list li a.hover,
+.menu-list li a:focus,
+.menu-list li a:hover {
+    color: #e3007e;
+}
+.menu-list li a.hover .inner-text,
+.menu-list li a.hover .soft,
+.menu-list li a:focus .inner-text,
+.menu-list li a:focus .soft,
+.menu-list li a:hover .inner-text,
+.menu-list li a:hover .soft {
+    color: #fff;
+}
+
+
+/* Search form
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#frm-center-search label,
+#frm-top-search label {
+	color: rgba(0,0,0,.3);
+	text-transform: none;
+	font-size: 4.2rem;
+	font-weight: 400;
+	font-family: 'Batman-Bold','Gotham','Montserrat',sans-serif;
+	padding-bottom: 3rem;
+}
+#frm-center-search label span,
+#frm-top-search label span {
+	display: block;
+	color: #000;
+	font-size: 1.6rem;
+	font-family: 'MetronicSlab','Georgia',serif;
+	font-weight: 300;
+}
+#frm-center-search #global-search-center,
+#frm-top-search #global-search {
+	width: 360px;
+	border-color: transparent;
+	border-bottom-color: rgba(0,0,0,.25);
+	background-color: transparent;
+	padding: 5px 10px;
+	line-height: 2.4rem !important;
+	height: auto;
+}
+
+/* Close icons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.close-klikdan,
+.close-menu {
+	opacity: .7;
+}
+.close-klikdan,
+.close-menu,
+.close-search {
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	display: block;
+	cursor: pointer;
+	transition: opacity .15s ease-in-out;
+	line-height: 40px;
+	color: inherit;
+	background-color: transparent !important;
+	border: 0;
+	margin: 0;
+	overflow: visible;
+	position: absolute;
+	top: 30px;
+	right: 100px;
+	opacity: .5;
+	z-index: 4;
+}
+
+.cross.close-menu .cross-stroke {
+	border-color: #fff;
+}
+.close-klikdan:hover,
+.close-menu:hover,
+.close-search:hover {
+	opacity: 1;
+}
+.cross .cross-stroke {
+	position: absolute;
+	width: 32px;
+	transform: rotate(45deg);
+	border: 2px solid #000;
+	border-radius: 6px;
+}
+.cross .cross-stroke:last-child {
+	transform: rotate(-45deg);
+}
+
+/* tweaking the fucking crosses for the close search */
+.cross.close-search .cross-stroke {
+	transform: rotate(45deg) translate(15px, 10px);
+}
+.cross.close-search .cross-stroke:last-child {
+	transform: rotate(-45deg) translate(-10px, 15px);
+}
+
+
